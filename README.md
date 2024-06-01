@@ -45,12 +45,19 @@ To run this project locally, follow these steps:
 
 │
 ├── data/ # Contains the dataset
+
 ├── models/ # Contains the saved models
+
 ├── venv/ # Virtual environment directory (excluded from Git)
+
 ├── notebook.ipynb # Jupyter notebook for exploration and analysis
+
 ├── readme.md # Project description and instructions
+
 ├── requirements.txt # List of dependencies
+
 ├── .gitignore # Git ignore file
+
 └── app.py # Streamlit app script
 
 ## Models
