@@ -1,0 +1,9 @@
+{
+  "name": "fraud-detection-netlify",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "netlify dev",
+    "test": "node scripts/parity_test.mjs"
+  }
+}

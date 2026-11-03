@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Test three machine learning models trained to detect fraudulent credit card transactions."
+    />
+    <title>Credit Card Fraud Detection</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <span class="eyebrow">Machine learning demo</span>
+        <h1>Credit Card <span>Fraud Detection</span></h1>
+        <p class="hero-copy">
+          Pick one of three trained models, load a real transaction example or enter your own
+          values, and see how the model classifies it.
+        </p>
+      </header>
+
+      <main class="layout">
+        <section class="card form-card" aria-labelledby="form-title">
+          <form id="prediction-form">
+            <div class="section-heading">
+              <h2 id="form-title">Transaction details</h2>
+              <button type="button" class="text-button" id="reset-button">Clear</button>
+            </div>
+
+            <div class="field-group">
+              <label for="model-select">Model</label>
+              <select id="model-select" name="model">
+                <option value="logistic">Logistic Regression</option>
+                <option value="knn">K-Nearest Neighbors</option>
+                <option value="tree">Decision Tree</option>
+              </select>
+              <p class="hint" id="model-description"></p>
+            </div>
+
+            <div class="field-group">
+              <label for="sample-select">Load an example transaction</label>
+              <select id="sample-select">
+                <option value="">Choose a preset transaction</option>
+              </select>
+              <p class="hint sample-note" id="sample-note" hidden></p>
+            </div>
+
+            <div class="split-fields">
+              <div class="field-group">
+                <label for="Time">Time <span>seconds since first transaction</span></label>
+                <input
+                  id="Time"
+                  name="Time"
+                  type="number"
+                  step="any"
+                  min="0"
+                  inputmode="decimal"
+                  value="0"
+                  required
+                />
+              </div>
+              <div class="field-group">
+                <label for="Amount">Amount <span>USD</span></label>
+                <input
+                  id="Amount"
+                  name="Amount"
+                  type="number"
+                  step="any"
+                  min="0"
+                  inputmode="decimal"
+                  value="0"
+                  required
+                />
+              </div>
+            </div>
+
+            <details class="advanced" id="advanced">
+              <summary>
+                <span>Advanced features</span>
+                <span class="summary-meta">V1–V28 PCA components</span>
+              </summary>
+              <p class="hint">
+                These anonymized features come from the original dataset. Presets fill them
+                automatically, so you only need to edit them if you know what you are testing.
+              </p>
+              <div class="feature-grid" id="feature-grid"></div>
+            </details>
+
+            <button class="predict-button" id="predict-button" type="submit">
+              <span id="button-label">Analyze transaction</span>
+              <span class="spinner" id="spinner" hidden aria-hidden="true"></span>
+            </button>
+            <p class="error" id="error-message" role="alert" hidden></p>
+          </form>
+        </section>
+
+        <aside class="card result-card" aria-live="polite">
+          <div class="placeholder" id="result-placeholder">
+            <div class="placeholder-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M12 3 4.5 6v5.5c0 4.4 3.2 8.4 7.5 9.5 4.3-1.1 7.5-5.1 7.5-9.5V6L12 3Z" />
+                <path d="m8.5 12 2.4 2.4 4.6-5" />
+              </svg>
+            </div>
+            <h2>Ready when you are</h2>
+            <p>Run an analysis to see the selected model's verdict and fraud probability.</p>
+          </div>
+
+          <div id="result" hidden>
+            <div class="result-topline">
+              <span class="result-model" id="result-model"></span>
+              <span class="verdict" id="verdict"></span>
+            </div>
+
+            <div class="probability">
+              <span class="probability-value" id="probability-value">0%</span>
+              <span class="probability-label">fraud probability</span>
+            </div>
+            <div class="probability-bar">
+              <div class="probability-fill" id="probability-fill"></div>
+            </div>
+            <p class="hint result-copy" id="result-copy"></p>
+
+            <div class="metrics">
+              <h3>Training performance</h3>
+              <dl id="metrics-list"></dl>
+            </div>
+
+            <p class="disclaimer">
+              This is a demonstration trained on a small sample of a public dataset. Do not use it
+              for real financial decisions.
+            </p>
+          </div>
+        </aside>
+      </main>
+
+      <footer>
+        <span>Credit card fraud detection</span>
+        <span>Logistic Regression · KNN · Decision Tree</span>
+      </footer>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
